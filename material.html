@@ -57,23 +57,31 @@ tfoot td {
   background: #f1f5f9;
   color: #1e293b;
 }
+.bloco {
+      max-width: 900px;
+      margin: 40px auto;
+      background: linear-gradient(to right, #1e3a8a, #1d4ed8);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;}
 
-a.btn-voltar {
-  display: inline-block;
-  margin: 30px auto;
-  background: linear-gradient(to right, #1e40af, #3b82f6);
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
+.btn-voltar {
+      display: inline-block;
+      margin: 30px auto;
+      background: linear-gradient(to right, #1e40af, #3b82f6);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
 
-a.btn-voltar:hover {
-   background: linear-gradient(to right, #1e3a8a, #2563eb);
-  transform: scale(1.05);
-}
+    .btn-voltar:hover {
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      transform: scale(1.05);
+    }
 
   @media (max-width: 768px) {
     .btn-voltar {
@@ -245,7 +253,53 @@ a.btn-voltar:hover {
       </select></td>
         <td class="total">300.00</td>
       </tr>
+      <tr data-id="bomba">
+        <td>Filtro</td>
+        <td>150</td>
+        <td><input type="number" min="0" value="1" onchange="salvarECalcular(this)">
+        <select onchange="salvarECalcular(this)">
+        <option value="unidade" selected>unidade</option>
+        <option value="metro">metro</option>
+      </select></td>
+        <td class="total">300.00</td>
     </tbody>
+    <tr data-id="valvula">
+        <td>Vávula de controle de ramal</td>
+        <td>20</td>
+        <td><input type="number" min="0" value="1" onchange="salvarECalcular(this)">
+        <select onchange="salvarECalcular(this)">
+        <option value="unidade" selected>unidade</option>
+        <option value="metro">metro</option>
+      </select></td>
+        <td class="total">300.00</td>
+       <tr data-id="conectores">
+        <td>Conectores</td>
+        <td>5.00</td>
+        <td><input type="number" min="0" value="1" onchange="salvarECalcular(this)">
+        <select onchange="salvarECalcular(this)">
+        <option value="unidade" selected>unidade</option>
+        <option value="metro">metro</option>
+      </select></td>
+        <td class="total">300.00</td>
+       <tr data-id="abraçadeiras">
+        <td>Abraçadeiras</td>
+        <td>0.50</td>
+        <td><input type="number" min="0" value="1" onchange="salvarECalcular(this)">
+        <select onchange="salvarECalcular(this)">
+        <option value="unidade" selected>unidade</option>
+        <option value="metro">metro</option>
+      </select></td>
+        <td class="total">300.00</td>
+       <tr data-id="bomba">
+        <td>Caixa de Válvulas/painel</td>
+        <td>200</td>
+        <td><input type="number" min="0" value="1" onchange="salvarECalcular(this)">
+        <select onchange="salvarECalcular(this)">
+        <option value="unidade" selected>unidade</option>
+        <option value="metro">metro</option>
+      </select></td>
+        <td class="total">300.00</td>
+        
     <tfoot>
       <tr>
         <td colspan="3">Total Geral</td>
@@ -262,7 +316,10 @@ a.btn-voltar:hover {
     curva: { quantidade: 3, unidade: "unidade" },
     tubo: { quantidade: 500, unidade: "metro" },
     tubo1: { quantidade: 100, unidade: "metro" },
-    tubo2: { quantidade: 125, unidade: "metro" }
+    tubo2: { quantidade: 125, unidade: "metro" },
+    valvula: { quantidade: 25, unidade: "unidade" },
+    conectores: { quantidade: 30, unidade: "unidade" },
+    abraçadeiras: { quantidade: 150, unidade: "unidade"},
   };
 
   function salvarECalcular(elemento) {
@@ -297,7 +354,7 @@ a.btn-voltar:hover {
       // Exceções por conteúdo textual da célula (para tubos diferentes)
       if (id === "tubo") {
         if (linha.cells[0].textContent.toLowerCase().includes("ramais")) {
-          valores = { quantidade: 25, unidade: "metro" };
+          valores = { quantidade: 500, unidade: "metro" };
         } else if (linha.cells[0].textContent.toLowerCase().includes("sucção")) {
           valores = { quantidade: 10, unidade: "metro" };
         } else if (linha.cells[0].textContent.toLowerCase().includes("recalque")) {

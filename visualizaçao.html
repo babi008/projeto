@@ -141,40 +141,34 @@
       transform: scale(1.05);
     }
 
-    @media (max-width: 768px) {
-    .btn-voltar {
-      width: 100%;         /* botão ocupa 100% da largura do container */
-      font-size: 1.2rem;   /* fonte maior para facilitar leitura */
-      padding: 16px 0;     /* mais espaço para toque */
-      margin: 10px auto;   /* margem para separar do conteúdo */
-      border-radius: 12px; /* bordas arredondadas maiores */
-      display: block;      /* garantir que ele ocupe linha inteira */
-      text-align: center;  /* texto centralizado */
+    /* 📱 Ajustes para celular */
+  @media (max-width: 768px) {
+    .carrossel {
+     overflow-x: auto; /* Libera rolagem horizontal no celular */
+     -webkit-overflow-scrolling: touch; /* Rolagem suave no mobile */
+      gap: 12px; /* Espaçamento menor para caber mais */
+      padding: 15px 0;
     }
-  
-      .bloco {
-        padding: 15px;
-        margin: 20px 15px;
-      }
 
-      .carrossel-wrapper {
-        padding: 0 10px;
-      }
-
-      #togglePump {
-        margin-bottom: 20px;
-      }
-
-      .item {
-        scroll-snap-align: center;
-      }
-
-      .btn-voltar {
-        width: 100%;
-        font-size: 1.1em;
-        margin: 10px auto;
-      }
+    .carrossel::-webkit-scrollbar {
+      display: none; /* Esconde a barra de rolagem no mobile */
     }
+
+    .item {
+     min-width: 180px; /* Itens mais estreitos para caber melhor na tela */
+     padding: 10px;
+   }
+
+    .carrossel img.tilt-zoom {
+      height: 140px; /* Imagem menor no mobile */
+    }
+
+    .scroll-btn {
+      padding: 6px 10px;
+      font-size: 1rem;
+    }
+  }
+
     .img-responsiva {
       max-width: 100%;
       height: auto;
@@ -206,7 +200,6 @@
   object-fit: contain;
   transition: transform 0.2s ease;
 }
-
 
 
 
@@ -296,7 +289,7 @@
   <div class="bloco">
     <section class="carrossel-materiais">
       <h2>🔧 Materiais Utilizados (visualização)</h2>
-      <p>Amplie a imagem com um simples toque.</p>
+      <p>Amplie e passe a imagem com um simples toque.</p>
       <div class="carrossel-wrapper">
         <button class="scroll-btn left" onclick="scrollCarrossel(-1)">⬅</button>
         <div class="carrossel" id="carrossel">
@@ -351,6 +344,31 @@
             <img src="img/tuboderecalque.png" alt="Tubo de Recalque" class="tilt-zoom">
           </div>
 
+          <div class="item">
+            <h3>11.Filtro</h3>
+            <img src="img/filtro.png" alt="Tubo de Recalque" class="tilt-zoom">
+          </div>
+
+          <div class="item">
+            <h3>12.Válvula de controle de ramal</h3>
+            <img src="img/valvula.png" alt="Tubo de Recalque" class="tilt-zoom">
+          </div>
+
+          <div class="item">
+            <h3>13.Conectores</h3>
+            <img src="img/conector.png" alt="Tubo de Recalque" class="tilt-zoom">
+          </div>
+
+          <div class="item">
+            <h3>14.Abraçadeiras</h3>
+            <img src="img/abraçadeira.png" alt="Tubo de Recalque" class="tilt-zoom">
+          </div>
+
+           <div class="item">
+            <h3>15.Caixa de válvulas</h3>
+            <img src="img/caixa.png" alt="Tubo de Recalque" class="tilt-zoom">
+          </div>
+
         </div>
         <button class="scroll-btn right" onclick="scrollCarrossel(1)">➡</button>
       </div>
@@ -361,7 +379,7 @@
 
   <div class="bloco">
     <h2>📐 Perfil Técnico do Projeto</h2>
-    <img src="img/perfil.png" alt="Perfil Técnico do Projeto" class="img-responsiva">
+    <img src="img/perfil_2.png" alt="Perfil Técnico do Projeto" class="img-responsiva">
     <p>Perfil lateral do projeto com dimensões e layout de instalação da bomba.</p>
   </div>
 
@@ -518,11 +536,7 @@
       });
     }
 
-    // Bloqueia scroll manual do carrossel (mouse wheel e touch)
-    const carrossel = document.getElementById("carrossel");
-    carrossel.addEventListener('wheel', e => e.preventDefault(), { passive: false });
-    carrossel.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
-
+    
     // Zoom toggle ao clicar na imagem
     const imagens = document.querySelectorAll('.carrossel img.tilt-zoom');
     imagens.forEach(img => {
